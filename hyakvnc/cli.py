@@ -4,9 +4,9 @@
 # Quick start guide
 #
 # 1. Build and install hyakvnc package
-#      $ python3 -m pip install --upgrade --user pip
+#      $ python3 -m pip install --upgrade pip
 #      $ cd hyakvnc
-#      $ python3 -m pip install --user .
+#      $ python3 -m pip install .
 #
 # 2. To start VNC session (on `ece` computing resources) for 5 hours on a node
 #    with 16 cores and 32GB of memory, run the following

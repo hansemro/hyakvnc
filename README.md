@@ -28,20 +28,20 @@ Before running `hyakvnc`, you'll need the following:
 
 Update pip:
 ```bash
-python3 -m pip install --upgrade --user pip
+python3 -m pip install --upgrade pip
 ```
 
 Build and install the package:
 
 ```bash
-python3 -m pip install --user git+https://github.com/uw-psych/hyakvnc
+python3 -m pip install git+https://github.com/uw-psych/hyakvnc
 ```
 
 Or, clone the repo and install the package locally:
 
 ```bash
 git clone https://github.com/uw-psych/hyakvnc
-python3 -m pip install --user .
+python3 -m pip install .
 ```
 
 If successful, then `hyakvnc` should be installed to `~/.local/bin/`.
