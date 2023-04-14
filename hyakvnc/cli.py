@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2023 Hansem Ro <hansem7@uw.edu> <hansemro@outlook.com>
 
-VERSION = 2.0
-
 # Quick start guide
 #
 # 1. Build and install hyakvnc package
@@ -126,6 +124,7 @@ import pwd
 import os # for path, file/dir checking, hostname
 import subprocess # for running shell commands
 import re # for regex
+from . import __version__
 from .hyaknode import *
 
 # Base VNC port cannot be changed due to vncserver not having a stable argument
@@ -285,7 +284,7 @@ def main():
             logging.debug(msg)
 
     if args.print_version:
-        print(f"hyakvnc.py {VERSION}")
+        print(f"hyakvnc.py {__version__}")
         exit(0)
     if args.command is None:
         parser.print_help()

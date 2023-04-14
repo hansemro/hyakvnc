@@ -1,6 +1,6 @@
 [project]
 name = "hyakvnc"
-version = "2.0"
+dynamic = ["version"]
 description = "Create and manage VNC sessions on HYAK Klone."
 authors = [
     {name = "Hansem Ro", email = "hansem7@uw.edu"},
@@ -17,6 +17,9 @@ readme = "README.md"
 [build-system]
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "release-branch-semver"
 
 [project.scripts]
 hyakvnc = "hyakvnc.cli:main"
