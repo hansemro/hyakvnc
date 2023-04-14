@@ -6,7 +6,7 @@ Create and manage VNC Slurm jobs on UW HYAK Klone cluster.
 `hyakvnc` allocates resources then starts a VNC session within an Apptainer
 environment.
 
-Disclaimer: VNC sessions are time-limited and will expire with all processes
+**Disclaimer:** VNC sessions are time-limited and will expire with all processes
 closed. Save often if you can or reserve a session for a generous length of
 time.
 
@@ -92,8 +92,8 @@ PuTTY Configuration->Connection->SSH->Tunnels, then set:
   - source port to `AAAA`
   - destination to `127.0.0.1:BBBB`
 
-Press `Add`, then connect to Klone as normal. Keep this window open as it
-maintains a connection to the VNC session running on Klone.
+Press `Add`, then connect to Klone as normal. **Keep the terminal window open** as
+it maintains a connection to the VNC session running on Klone.
 
 4. Connect to the VNC session at instructed address (in this example:
    `localhost:AAAA`)
