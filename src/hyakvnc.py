@@ -170,8 +170,8 @@ BASE_VNC_PORT = 5900
 # List of Klone login node hostnames
 LOGIN_NODE_LIST = ["klone-login01", "klone1.hyak.uw.edu", "klone2.hyak.uw.edu"]
 
-# Full path to Apptainer binary (formerly Singularity)
-APPTAINER_BIN = "/sw/apptainer/default/bin/apptainer"
+# Full path to Apptainer bin directory
+APPTAINER_BIN = "/sw/apptainer/default/bin"
 
 # Checked to see if klone is authorized for intracluster access
 AUTH_KEYS_FILEPATH = os.path.expanduser("~/.ssh/authorized_keys")
@@ -207,7 +207,7 @@ class Node:
 
         Return apptainer exec string
         """
-        return f"{APPTAINER_BIN} exec {args} -B {APPTAINER_BINDPATH} {self.sing_container}"
+        return f"PATH={APPTAINER_BIN}:$PATH apptainer exec {args} -B {APPTAINER_BINDPATH} {self.sing_container}"
 
 class SubNode(Node):
     """
