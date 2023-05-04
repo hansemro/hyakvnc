@@ -746,7 +746,7 @@ class LoginNode(Node):
 
         assert subnode_job_id is not None
         assert subnode_name is not None
-        self.subnode = SubNode(subnode_name, subnode_job_id, self.sing_container, self.xstartup)
+        self.subnode = SubNode(subnode_name, subnode_job_id, self.sing_container, self.xstartup, self.debug)
         return self.subnode
 
     def cancel_job(self, job_id:int):
