@@ -342,7 +342,7 @@ class SubNode(Node):
         target = ""
         if display_number is not None:
             target = f":{display_number}"
-        vnc_cmd = f"{self.get_sing_exec(extra_args)} vncserver {target} -xstartup {self.xstartup} &"
+        vnc_cmd = f"{self.get_sing_exec(extra_args)} strace -f -o /dev/null vncserver {target} -xstartup {self.xstartup} &"
         if not self.debug:
             print("Starting VNC server...", end="", flush=True)
         proc = self.run_command(vnc_cmd, timeout=timeout)
