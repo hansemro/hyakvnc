@@ -327,14 +327,13 @@ class SubNode(Node):
             logging.debug(f"check_vnc: Checking VNC PID {pid}")
         return self.check_pid(pid)
 
-    def start_vnc(self, display_number=None, extra_args='', timeout=20):
+    def start_vnc(self, display_number=None, timeout=20):
         """
         Starts VNC session
 
         Args:
           display_number: Attempt to acquire specified display number if set.
                           If None, then let vncserver determine display number.
-          extra_args: Optional arguments passed to `apptainer exec`
           timeout: timeout length in seconds
 
         Returns True if VNC session was started successfully and False otherwise
@@ -342,7 +341,7 @@ class SubNode(Node):
         target = ""
         if display_number is not None:
             target = f":{display_number}"
-        vnc_cmd = f"{self.get_sing_exec(extra_args)} strace -f -o /dev/null vncserver {target} -xstartup {self.xstartup} &"
+        vnc_cmd = f"module load escience/tigervnc && vncserver {target} -noxstartup"
         if not self.debug:
             print("Starting VNC server...", end="", flush=True)
         proc = self.run_command(vnc_cmd, timeout=timeout)
@@ -1273,9 +1272,12 @@ def main():
             sing_exec_args = '--nv'
 
         # start vnc
-        if not subnode.start_vnc(extra_args=sing_exec_args, timeout=args.timeout):
+        if not subnode.start_vnc(timeout=args.timeout):
             hyak.cancel_job(subnode.job_id)
             exit(1)
+
+        # run xstartup (for desktop environment)
+        subnode.run_command(f"nohup sh -c \"(export DISPLAY=:{subnode.vnc_display_number} && {subnode.get_sing_exec(sing_exec_args)} {subnode.xstartup})\" &> /dev/null < /dev/null &")
 
         # get unused User<->Login port
         if args.u2h_port is not None and hyak.check_port(args.u2h_port):
